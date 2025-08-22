@@ -4,6 +4,8 @@ const minSecretLength: number = 5
 export function validateSecret (secret: string | undefined) {
     const typedSecret: string = validateType (secret)
     validateLength (typedSecret)
+
+    return typedSecret
 }
 
 function validateType (secret: string | undefined): string {
