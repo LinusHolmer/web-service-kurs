@@ -1,31 +1,31 @@
-import "dotenv/config"
-import {Db, MongoClient, ServerApiVersion} from "mongodb"
+import { Db, MongoClient, ServerApiVersion } from "mongodb"
 import { validateSecret } from "../security/validateEnvt.js"
 
-// Runtime-Validation
-const uri: string = validateSecret(process.env.DB_CONNECTION_STRING)
-const dbName: string = validateSecret(process.env.DB_NAME)
-const client = new MongoClient(uri, {
-    serverApi: {
-        version: ServerApiVersion.v1,
-        strict: true,
-        deprecationErrors: true,
-    },
-})
+let client: MongoClient
 let isConnected = false
+let dbName: string
 
-/** Attempts to connect to db
- * returns a promise
- * throws error at failed attempt */
 export async function runDB(): Promise<void> {
-    if (isConnected) return /// prevent duplicate connects
+    if (isConnected) return
+
+    // Load env vars here, after dotenv has run
+    const uri = validateSecret(process.env.DB_CONNECTION_STRING)
+    dbName = validateSecret(process.env.DB_NAME)
+
+    client = new MongoClient(uri, {
+        serverApi: {
+            version: ServerApiVersion.v1,
+            strict: true,
+            deprecationErrors: true,
+        },
+    })
 
     try {
         await client.connect()
-        await client.db("admin").command({ ping: 1})
+        await client.db("admin").command({ ping: 1 })
         isConnected = true
         console.log("Db is up and running")
-    } catch(err) {
+    } catch (err) {
         console.error(err)
         throw err
     }
@@ -33,12 +33,13 @@ export async function runDB(): Promise<void> {
 
 export function getDB(): Db {
     if (!isConnected) {
-        throw new Error(" Tried to access DB before connecting")
+        throw new Error("Tried to access DB before connecting")
     }
     return client.db(dbName)
 }
 
 export async function closeDB(): Promise<void> {
+    if (!client) return
     await client.close()
     isConnected = false
     console.log("Mongodb connection closed")
