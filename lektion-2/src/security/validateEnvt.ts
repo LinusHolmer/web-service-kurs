@@ -1,4 +1,4 @@
-const secret = process.env.SECRET // not work
+const secret = process.env.SECRET // not wor
 const minSecretLength: number = 5
 
 export function validateSecret (secret: string | undefined) {
