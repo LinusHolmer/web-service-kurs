@@ -11,7 +11,7 @@ try {
  await runDB()
  app.listen(port, () => {
      console.log(`Listening to port ${port}`)
-    console.log(`Start the app: http://localhost:${port}`)
+     console.log(`Start the app: http://localhost:${port}`)
  })
  process.on("SIGINT", async () => {
      console.log("Cleaning up...")

@@ -1,3 +1,4 @@
+import "dotenv/config"
 import {Db, MongoClient, ServerApiVersion} from "mongodb"
 import { validateSecret } from "../security/validateEnvt.js"
 
