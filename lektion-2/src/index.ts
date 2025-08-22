@@ -6,10 +6,8 @@ const port: number = Number(process.env.PORT) || 3000
 const secret = process.env.SECRET // not work
 
 app.get("/", (req, res) => {
-    res.status(200).send(
-        "<h2>My website</h2> <p>Hello world!</p>"
-        +"<ul><li>rad1</li></ul>"
-    )
+    res.status(200).send("Hello world")
+    res.json()
     
        /*
        res.send(new Buffer('test'));
