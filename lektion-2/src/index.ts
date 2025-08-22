@@ -2,7 +2,7 @@ import express from "express"
 import "dotenv/config"
 
 const app = express()
-const port: number = 3000
+const port: number = Number(process.env.PORT) || 3000
 const secret = process.env.SECRET // not work
 
 app.get("/", (req, res) => {
@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 })
 
 //Start server on Port variable
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
     console.log(`Listening on port ${port}`)
-    console.log(secret)
+    // console.log(secret)
 })
