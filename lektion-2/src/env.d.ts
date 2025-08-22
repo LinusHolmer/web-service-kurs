@@ -1,5 +1,5 @@
 declare namespace NodeJS {
-    interface ProcessEnv {
-        SECRET: string | undefined
-    }
+  interface ProcessEnv {
+    SECRET: string | undefined;
+  }
 }

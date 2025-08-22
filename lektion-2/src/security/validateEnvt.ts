@@ -1,23 +1,23 @@
-const minSecretLength : number = 5
+const minSecretLength: number = 5;
 
-export function validateSecret (secret: string | undefined) {
-const typedSecret : string = validateType (secret)
-validateLength (typedSecret )
+export function validateSecret(secret: string | undefined) {
+  const typedSecret: string = validateType(secret);
+  validateLength(typedSecret);
 
-return typedSecret
+  return typedSecret;
 }
 
-function validateType (secret: string | undefined): string {
-if (!secret) {
- throw new Error("Secret: not properly set up" )
- }
+function validateType(secret: string | undefined): string {
+  if (!secret) {
+    throw new Error("Secret: not properly set up");
+  }
 
-return secret
+  return secret;
 }
 
-function validateLength (secret: string) {
-if (secret && secret.length < minSecretLength ) {
- throw new Error(`Secret: incorrect length (min length:
-${minSecretLength })`)
- }
+function validateLength(secret: string) {
+  if (secret && secret.length < minSecretLength) {
+    throw new Error(`Secret: incorrect length (min length:
+${minSecretLength})`);
+  }
 }
