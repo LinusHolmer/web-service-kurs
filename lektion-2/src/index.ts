@@ -37,8 +37,9 @@ app.get("/", (req, res) => {
       
 })
 
-//Start server on Port variable
+/*Start server on Port variable
 app.listen(port, address, () => {
     console.log(`Listening on port ${port}`)
     // console.log(secret)
 })
+    */
