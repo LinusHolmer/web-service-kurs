@@ -3,7 +3,7 @@ import "dotenv/config";
 import { closeDB, runDB } from "./db/database.js";
 
 const app = express();
-const port: number = Number(process.env.PORT);
+const port: number = Number(process.env.PORT) || 3000;
 const address: string = "0.0.0.0";
 
 async function startServer() {
