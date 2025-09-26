@@ -1,4 +1,4 @@
 package com.linusholmer.lektion_5.model;
 
-public record CustomUser(String username, String password) {
+public record CustomUser(String username, String password, Long Id, boolean IsEnabled) {
 }
