@@ -1,5 +1,8 @@
 package com.example.lektion_7.model;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Student {
     Long Id;
     String FirstName;
